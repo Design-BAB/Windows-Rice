@@ -23,12 +23,14 @@ set splitright
 set clipboard=unnamedplus
 set confirm
 set exrc
+let mapleader = " "
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile && yarn build'}
 Plug 'fatih/vim-go'
 Plug 'charlespascoe/vim-go-syntax'
 Plug 'preservim/nerdtree'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 call plug#end()
 
 set hidden
@@ -86,6 +88,24 @@ inoremap <silent><expr> <S-Tab> pumvisible() ? coc#pum#prev(1) : "\<C-h>"
 " Use Enter to confirm selection
 inoremap <silent><expr> <CR> pumvisible() ? coc#pum#confirm() : "\<CR>"
 
+"this sets space and E for file exploration
 nnoremap <silent> <leader>e :NERDTreeToggle<CR>
 
+"this configures our theme
+lua << EOF
+require("tokyonight").setup {
+  style = "night", -- Options: "storm", "moon", "night", "day"
+  transparent = true,
+  terminal_colors = true,
+  styles = {
+    comments = { italic = true },
+    keywords = { italic = true },
+  },
+}
+EOF
+
+colorscheme tokyonight
+
 command! GoRunIt :terminal go run %
+command! Gorunit :terminal go run %
+command! Python :terminal Python %
