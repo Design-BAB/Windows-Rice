@@ -2,6 +2,8 @@
 
 Welcome to the **Windows Rice Installer** by **DesignBAB**—a minimalist, expressive setup script that transforms your Windows terminal into a personalized, aesthetic workspace. This tool automates the installation of Fastfetch, Neovim, and custom ASCII art, giving your shell a sleek, functional glow-up.
 
+<img width="1919" height="1199" alt="Screenshot 2025-09-15 185715" src="https://github.com/user-attachments/assets/45a6927c-7efc-4180-b311-f381e7129c34" />
+
 ---
 
 ### ⚙️ Requirements
@@ -18,7 +20,6 @@ python --version
 go version
 ```
 
----
 
 ### 📦 What This Script Does
 
@@ -29,7 +30,6 @@ go version
   - `coc-settings.json` for autocompletion
   - `vim-plug` plugin manager
 
----
 
 ### 🚀 How to Run
 
@@ -41,8 +41,6 @@ python MyWindowsSetup.py
 
 You'll be guided step-by-step with pauses and prompts. Press `ENTER` to continue through each phase, or type `q` to quit.
 
----
-
 ### 🎨 Fastfetch ASCII Integration
 
 To display your custom ASCII art on terminal launch, add this to your PowerShell startup command:
@@ -53,7 +51,6 @@ To display your custom ASCII art on terminal launch, add this to your PowerShell
 
 Replace `PATH\TO\THE\main.exe` with the actual path to your compiled Go binary.
 
----
 
 ### 📝 Neovim Setup Notes
 
