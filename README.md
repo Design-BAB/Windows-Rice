@@ -61,5 +61,3 @@ After installation:
 3. Enjoy your custom editor setup
 
 ---
-
-Want help turning this into a GitHub p
