@@ -9,38 +9,7 @@ from pathlib import Path
 
 #Need to define the variables first
 nvimLocation = os.getlogin()
-docLocation = "C:\\Users\\" + nvimLocation + "\\Documents"
 nvimLocation = "C:\\Users\\" + nvimLocation + "\\AppData\\Local\\nvim\\"
-
-
-def replace_windows_terminal_settings():
-    # Locate the new settings.json in ./src/settings.json
-    script_dir = Path(__file__).parent
-    new_settings_path = script_dir / "src" / "settings.json"
-    if not new_settings_path.exists():
-        raise FileNotFoundError(f"❌ Custom settings.json not found at {new_settings_path}")
-
-    # Get LOCALAPPDATA
-    local_appdata = os.environ.get("LOCALAPPDATA")
-    if not local_appdata:
-        raise EnvironmentError("LOCALAPPDATA not found.")
-
-    # Find the Windows Terminal settings path
-    wt_base = Path(local_appdata) / "Packages"
-    candidates = [p for p in wt_base.glob("Microsoft.WindowsTerminal_*") if p.is_dir()]
-    if not candidates:
-        raise FileNotFoundError("Windows Terminal package folder not found.")
-
-    settings_dir = candidates[0] / "LocalState"
-    settings_file = settings_dir / "settings.json"
-
-    # Backup existing settings
-    backup_file = settings_dir / "settings.backup.json"
-    shutil.copy2(settings_file, backup_file)
-
-    # Replace with new settings
-    shutil.copy2(new_settings_path, settings_file)
-    print(f"✅ Replaced Windows Terminal settings with: {new_settings_path}")
 
 
 def install_vim_plug():
@@ -48,7 +17,6 @@ def install_vim_plug():
         'iwr -useb https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | '
         'ni $HOME\\vimfiles\\autoload\\plug.vim -Force'
     )
-
     try:
         subprocess.run(command, check=True)
         print("✅ vim-plug installed successfully.")
@@ -70,7 +38,6 @@ filename = filename + "\\src\\main.go"
 def setup_Ascii():
     try:
         subprocess.run(['go', 'build', filename], check=True)        
-        shutil.copy("main.exe", docLocation + "\\main.exe")
     except subprocess.CalledProcessError as e:
         print(f"An error occurred: {e}")
 
@@ -90,7 +57,11 @@ print("")
 print("Now we setup the ASCII art for fastfetch")
 os.makedirs(docLocation, exist_ok=True)
 setup_Ascii()
-#replace_windows_terminal_settings()
+pause()
+print("You can add the fastfetch as a welcome message by adding this to the commandline with powershell settings...")
+print("%SystemRoot%\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -NoExit -Command PATH\\TO\\THE\\main.exe | fastfetch --color '38;5;32' -c neofetch --logo -")
+print("")
+pause("")
 print("")
 print("Next we install neovim along with its' custom settings✏️")
 pause()
